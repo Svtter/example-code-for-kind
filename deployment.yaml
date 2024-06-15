@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cathodic-deployment
+  labels:
+    app: cathodic
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cathodic
+  template:
+    metadata:
+      labels:
+        app: cathodic
+    spec:
+      containers:
+      - name: cathodic-frontend
+        # my custom image.
+        image: svtter/cathodic-frontend:v0.5
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+
